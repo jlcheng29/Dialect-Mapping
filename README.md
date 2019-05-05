@@ -7,6 +7,7 @@ https://github.com/digling/cddb/tree/master/datasets
 
 https://www.stephen-li.com/TaishaneseVocabulary/
 
+https://gist.githubusercontent.com/LinguList/7481097/raw/036610e905af4ea7fbc3de01fa443d8b08f4c684/basic.qlc
 
 
 ### Syntax notes:
