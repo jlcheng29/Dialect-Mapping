@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+    body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        width: 960px;
+        height: 500px;
+        position: relative;
+    }
+    svg {
+        width: 100%;
+        height: 100%;
+        position: center;
+    }
+
+    path.slice{
+        stroke-width:2px;
+    }
+
+    text{
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    polyline{
+        opacity: .3;
+        stroke: black;
+        stroke-width: 2px;
+        fill: none;
+    }
+
+    .labelValue
+    {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 60%;
+        opacity: .5;
+
+    }
+
+    label {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: normal;
+    }
+
+    .toolTip {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        position: absolute;
+        display: none;
+        width: auto;
+        height: auto;
+        background: none repeat scroll 0 0 white;
+        border: 0 none;
+        border-radius: 8px 8px 8px 8px;
+        box-shadow: -3px 3px 15px #888888;
+        color: black;
+        font: 12px sans-serif;
+        padding: 5px;
+        text-align: center;
+    }
+
+
+    .legend {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 60%;
+    }
+    rect {
+        stroke-width: 2;
+    }
+
+    text {
+        font: 10px sans-serif;
+    }
+
+
+    text.value{
+        font-size: 200%;
+        fill: white;
+    }
+
+    text.label{
+        font-size: 100%;
+    }
+
+    .axis text {
+        font: 10px sans-serif;
+    }
+
+    .axis path{
+        fill: none;
+        stroke: #000;
+    }
+
+    .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+
+    .axis .tick line {
+        stroke-width: 1;
+        stroke: rgba(0, 0, 0, 0.2);
+    }
+
+    .axisHorizontal path{
+        fill: none;
+    }
+
+    .axisHorizontal line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+
+    .axisHorizontal .tick line {
+        stroke-width: 1;
+        stroke: rgba(0, 0, 0, 0.2);
+    }
+
+    .bar {
+        fill: steelblue;
+        fill-opacity: .9;
+    }
+
+    .x.axis path {
+        display: none;
+    }
+
+
+</style>
+<body>
+<form action="/action_page.php">
+    <select id= "input">
+        <option value="option1">January</option>
+        <option value="option2">February</option>
+        <option value="option3">March</option>
+        <option value="option4">April</option>
+        <option value="option5">May</option>
+        <option value="option6">June</option>
+        <option value="option7">July</option>
+        <option value="option8">August</option>
+        <option value="option9">September</option>
+        <option value="option10">October</option>
+        <option value="option11">November</option>
+        <option value="option12">December</option>
+    </select>  
+</form>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+    datasetOption1 = [
+        {label:"Portland", value:35.51},
+        {label:"Concord", value:36.37},
+        {label:"Burlington", value:35.89},
+        {label:"Windsor Locks", value:36.44},
+        {label:"Providence", value:36.52},
+        {label:"Worcester", value:36.67},
+        {label:"Boston", value:36.99},
+    ];
+
+    datasetOption2 = [
+        {label:"Portland", value:27.19},
+        {label:"Concord", value:27.93},
+        {label:"Burlington", value:27.49},
+        {label:"Windsor Locks", value:27.99},
+        {label:"Providence", value:28.02},
+        {label:"Worcester", value:28.11},
+        {label:"Boston", value:29.02},
+    ];
+
+    datasetOption3 = [
+        {label:"Portland", value:31.99},
+        {label:"Concord", value:34.04},
+        {label:"Burlington", value:33.83},
+        {label:"Windsor Locks", value:35.13},
+        {label:"Providence", value:34.57},
+        {label:"Worcester", value:34.87},
+        {label:"Boston", value:34.73},
+    ];
+    
+    datasetOption4 = [
+        {label:"Portland", value:29.54},
+        {label:"Concord", value:31.20},
+        {label:"Burlington", value:30.43},
+        {label:"Windsor Locks", value:31.85},
+        {label:"Providence", value:31.21},
+        {label:"Worcester", value:31.56},
+        {label:"Boston", value:31.62},
+    ];
+
+    datasetOption5 = [
+        {label:"Portland", value:18.95},
+        {label:"Concord", value:23.00},
+        {label:"Burlington", value:26.09},
+        {label:"Windsor Locks", value:28.99},
+        {label:"Providence", value:29.49},
+        {label:"Worcester", value:29.31},
+        {label:"Boston", value:34.30},
+    ];
+    
+    datasetOption6 = [
+        {label:"Portland", value:22.89},
+        {label:"Concord", value:23.44},
+        {label:"Burlington", value:23.59},
+        {label:"Windsor Locks", value:24.83},
+        {label:"Providence", value:23.81},
+        {label:"Worcester", value:24.03},
+        {label:"Boston", value:24.78},
+    ];
+    
+    datasetOption7 = [
+        {label:"Portland", value:25.83},
+        {label:"Concord", value:26.50},
+        {label:"Burlington", value:26.40},
+        {label:"Windsor Locks", value:27.12},
+        {label:"Providence", value:26.48},
+        {label:"Worcester", value:26.71},
+        {label:"Boston", value:26.56},
+    ];
+    datasetOption8 = [
+        {label:"Portland", value:23.38},
+        {label:"Concord", value:23.77},
+        {label:"Burlington", value:23.82},
+        {label:"Windsor Locks", value:24.14},
+        {label:"Providence", value:23.64},
+        {label:"Worcester", value:23.87},
+        {label:"Boston", value:23.71},
+    ];
+    datasetOption9 = [
+        {label:"Portland", value:28.04},
+        {label:"Concord", value:26.44},
+        {label:"Burlington", value:26.43},
+        {label:"Windsor Locks", value:26.62},
+        {label:"Providence", value:26.00},
+        {label:"Worcester", value:26.42},
+        {label:"Boston", value:26.69},
+    ];
+    datasetOption10 = [
+        {label:"Portland", value:27.13},
+        {label:"Concord", value:29.52},
+        {label:"Burlington", value:30.78},
+        {label:"Windsor Locks", value:31.41},
+        {label:"Providence", value:31.53},
+        {label:"Worcester", value:31.82},
+        {label:"Boston", value:32.96},
+    ];
+    datasetOption11 = [
+        {label:"Portland", value:31.06},
+        {label:"Concord", value:32.61},
+        {label:"Burlington", value:32.48},
+        {label:"Windsor Locks", value:33.04},
+        {label:"Providence", value:33.14},
+        {label:"Worcester", value:33.36},
+        {label:"Boston", value:33.93},
+    ];
+    datasetOption12 = [
+        {label:"Portland", value:74.27},
+        {label:"Concord", value:77.57},
+        {label:"Burlington", value:77.93},
+        {label:"Windsor Locks", value:78.39},
+        {label:"Providence", value:79.73},
+        {label:"Worcester", value:79.77},
+        {label:"Boston", value:80.61},
+    ];
+  
+
+    d3.select('#input').on("change", selectDataset);
+
+    function selectDataset()
+    {
+        var value = this.value;
+        if (value == "option1")
+        {
+            change(datasetOption1);
+        }
+        else if (value == "option2")
+        {
+            change(datasetOption2);
+        }
+        else if (value == "option3")
+        {
+            change(datasetOption3);
+        }
+        else if (value == "option4")
+        {
+            change(datasetOption4);
+        }
+        else if (value == "option5")
+        {
+            change(datasetOption5);
+        }
+        else if (value == "option6")
+        {
+            change(datasetOption6);
+        }
+        else if (value == "option7")
+        {
+            change(datasetOption7);
+        }
+        else if (value == "option8")
+        {
+            change(datasetOption8);
+        }
+        else if (value == "option9")
+        {
+            change(datasetOption9);
+        }
+        else if (value == "option10")
+        {
+            change(datasetOption10);
+        }
+        else if (value == "option11")
+        {
+            change(datasetOption11);
+        }
+        else if (value == "option12")
+        {
+            change(datasetOption12);
+        }
+    }
+
+    var margin = {top: (parseInt(d3.select('body').style('height'), 10)/20), right: (parseInt(d3.select('body').style('width'), 10)/20), bottom: (parseInt(d3.select('body').style('height'), 10)/20), left: (parseInt(d3.select('body').style('width'), 10)/5)},
+            width = parseInt(d3.select('body').style('width'), 10) - margin.left - margin.right,
+            height = parseInt(d3.select('body').style('height'), 10) - margin.top - margin.bottom;
+
+    var div = d3.select("body").append("div").attr("class", "toolTip");
+
+    var formatPercent = d3.format("");
+
+    var y = d3.scale.ordinal()
+            .rangeRoundBands([height, 0], .2, 0.5);
+
+    var x = d3.scale.linear()
+            .range([0, width]);
+
+    var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("bottom");
+
+    var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient("left");
+    //.tickFormat(formatPercent);
+
+    var svg = d3.select("body").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+    change(datasetOption1);
+
+    function change(dataset) {
+
+        y.domain(dataset.map(function(d) { return d.label; }));
+        x.domain([0, d3.max(dataset, function(d) { return d.value; })]);
+
+        svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis);
+
+        svg.select(".y.axis").remove();
+        svg.select(".x.axis").remove();
+
+        svg.append("g")
+                .attr("class", "y axis")
+                .call(yAxis)
+                .append("text")
+                .attr("transform", "rotate(0)")
+                .attr("x", 50)
+                .attr("dx", ".1em")
+                .style("text-anchor", "end")
+                .text("Average Real Time Price");
+
+
+        var bar = svg.selectAll(".bar")
+                .data(dataset, function(d) { return d.label; });
+        // new data:
+        bar.enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", function(d) { return x(d.value); })
+                .attr("y", function(d) { return y(d.label); })
+                .attr("width", function(d) { return width-x(d.value); })
+                .attr("height", y.rangeBand());
+
+        bar
+                .on("mousemove", function(d){
+                    div.style("left", d3.event.pageX+10+"px");
+                    div.style("top", d3.event.pageY-25+"px");
+                    div.style("display", "inline-block");
+                    div.html((d.label)+"<br>"+"$"+(d.value));
+                });
+        bar
+                .on("mouseout", function(d){
+                    div.style("display", "none");
+                });
+
+
+        // removed data:
+        bar.exit().remove();
+
+        // updated data:
+        bar.transition()
+                .duration(750)
+                .attr("x", function(d) { return 0; })
+                .attr("y", function(d) { return y(d.label); })
+                .attr("width", function(d) { return x(d.value); })
+                .attr("height", y.rangeBand());
+
+    };
+</script>
+</body>
+
+<div>
+    <a href="https://plot.ly/~remoras2/87/?share_key=x8h3gtvyhZtzGKd641zQiY" target="_blank" title="plot from API (12)" style="display: block; text-align: center;"><img src="https://plot.ly/~remoras2/87.png?share_key=x8h3gtvyhZtzGKd641zQiY" alt="plot from API (12)" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+    <script data-plotly="remoras2:87" sharekey-plotly="x8h3gtvyhZtzGKd641zQiY" src="https://plot.ly/embed.js" async></script>
+</div>
+
+
+<head>
+<style>
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.desc {
+    padding: 15px;
+    font-family: Helvetica;
+    text-align: center;
+}
+</style>
+</head>
