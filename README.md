@@ -1,16 +1,15 @@
  Plots are located at:
  https://jlcheng29.github.io/Dialect-Mapping/
 
-## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/jlcheng29/Dialect-Mapping/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+### Data Sources:
+https://github.com/digling/cddb/tree/master/datasets
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+https://www.stephen-li.com/TaishaneseVocabulary/
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
+### Syntax notes:
 ```markdown
 Syntax highlighted code block
 
