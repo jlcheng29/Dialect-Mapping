@@ -1,3 +1,6 @@
+ Plots are located at:
+ https://jlcheng29.github.io/Dialect-Mapping/
+
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/jlcheng29/Dialect-Mapping/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
