@@ -1,3 +1,7 @@
+Order of cities
+("Shanghai","Suzhou","Hangzhou","Wenzhou","Guangzhou","Nanning","Xianggang","Xiamen","Fuzhou","Jian’ou","Shantou","Haikou","Taibei","Meixian","Taoyuan","Nanchang","Changsha","Xiangtan","Shexian","Tunxi","Taiyuan","Pingyao","Huhehaote","Beijing","Tianjin","Jinan","Qingdao","Nanjing","Hefei","Zhengzhou","Wuhan","Chengdu","Guiyang","Kunming","Haerbin","Xi’an","Yinchuan","Lanzhou","Xining","Wulumuqi","Taishan","Old Chinese","Middle Chinese","Late Han");
+ 
+ 
  Plots are located at:
  https://jlcheng29.github.io/Dialect-Mapping/
 
