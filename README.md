@@ -1,4 +1,3 @@
-INITIALS
 
 Order of cities
 ("Shanghai","Suzhou","Hangzhou","Wenzhou","Guangzhou","Nanning","Xianggang","Xiamen","Fuzhou","Jian’ou","Shantou","Haikou","Taibei","Meixian","Taoyuan","Nanchang","Changsha","Xiangtan","Shexian","Tunxi","Taiyuan","Pingyao","Huhehaote","Beijing","Tianjin","Jinan","Qingdao","Nanjing","Hefei","Zhengzhou","Wuhan","Chengdu","Guiyang","Kunming","Haerbin","Xi’an","Yinchuan","Lanzhou","Xining","Wulumuqi","Taishan","Old Chinese","Middle Chinese","Late Han");
@@ -12,6 +11,7 @@ Order of cities
 https://github.com/digling/cddb/tree/master/datasets
 
 https://www.stephen-li.com/TaishaneseVocabulary/
+Finding Taishanese pronunciations 
 
 https://gist.githubusercontent.com/LinguList/7481097/raw/036610e905af4ea7fbc3de01fa443d8b08f4c684/basic.qlc
 
