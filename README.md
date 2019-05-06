@@ -8,6 +8,9 @@ Order of cities
 
 
 ### Data Sources:
+
+Hóu Jīngyī 侯精一。 Xiàndài Hànyǔ fāngyán yīnkù
+
 https://github.com/digling/cddb/tree/master/datasets
 
 https://www.stephen-li.com/TaishaneseVocabulary/
